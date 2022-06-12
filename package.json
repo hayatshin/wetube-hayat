@@ -7,6 +7,8 @@
     "url": "git+https://github.com/hayatshin/wetube-hayat.git"
   },
   "scripts": {
+    "start": "node build/server.js",
+    "build": "babel src -d build",
     "dev": "nodemon --exec babel-node src/server.js",
     "assets": "webpack --config webpack.config.js"
   },
@@ -23,6 +25,7 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.10",
     "@babel/core": "^7.18.2",
     "@babel/node": "^7.17.10",
     "@babel/preset-env": "^7.18.2",
