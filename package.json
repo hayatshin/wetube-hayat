@@ -1,0 +1,31 @@
+{
+  "name": "wetube",
+  "version": "1.0.0",
+  "description": "wetube hayat graduation work",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hayatshin/wetube-hayat.git"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js",
+    "assets": "webpack --config webpack.config.js"
+  },
+  "author": "Hayat hyejung<hayat_shin@naver.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hayatshin/wetube-hayat/issues"
+  },
+  "homepage": "https://github.com/hayatshin/wetube-hayat#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.18.2",
+    "nodemon": "^2.0.16"
+  }
+}

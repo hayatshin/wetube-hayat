@@ -1,0 +1,74 @@
+#Container {
+    width: 800px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255, 0.7);
+    border-radius: 20px;
+}
+
+h1 {
+    color: #195973;
+    font-size: 45px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+#UserForm {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    height: 150px;
+    margin-top: 30px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #5FAAD9;
+    border-radius: 10px;
+    box-shadow: 10px 10px 2px 2px rgb(25,89,115, 0.8);
+}
+
+input {
+    height: 38px;
+    border-radius: 10px;
+    border: 0px;
+    text-align: center;
+}
+
+.Blank {
+    width: 400px;
+}
+
+.Blank::placeholder {
+    color: #5FB6D9;
+    font-size: 15px;
+}
+
+#Btn {
+    background-color: #195973;
+    color: white;
+    font-size: 18px;
+    width: 200px;
+    border-radius: 20px;
+}
+
+#SignUpBox {
+    margin-top: 50px;
+}
+
+#SignUpBox span {
+    color: #5FAAD9;;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#SignUpBox a {
+    color: #195973;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 20px;
+}

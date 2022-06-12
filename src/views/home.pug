@@ -1,0 +1,14 @@
+extends base
+
+block content
+    style 
+        include ../css/home.css
+    div#Container
+        h1 🎼 Let's Practice the Guitar
+        form#UserForm(method="POST" action="/video")
+            input.Blank(placeholder="Type Your Email", name="email", type="email", required) 
+            input.Blank(placeholder="Type Your Password", name="password", type="password", required) 
+            input#Btn(type="submit" value="Log In")
+        div#SignUpBox
+            span Don't have an Account? 
+            a(href="/sign-up") 👉 Sign Up

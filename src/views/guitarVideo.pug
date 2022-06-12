@@ -1,0 +1,25 @@
+doctype html
+html
+    head 
+        meta(charset="urf8")
+        title #{pageTitle} | Wetube
+        style 
+            include ../css/guitarVideo.css
+    body 
+        div#Record
+            form#RecordForm(method="POST")
+                input#DateInput(type="date" name="date")
+                label(for="title") Title:
+                input#TitleInput(type="text" name="title")
+            div#Btn
+                button#VideoBtn Start Video Recording 
+                button#SoundBtn Start Sound Recording
+            div#RecordBox
+                div#VideoBox
+                    video#recordVideo
+        div#List
+            if date || title 
+                a#LinkVideo(href="#")
+                    span 👉 Date: #{date} / 
+                    span Title: #{title}
+    script(src="../js/recorder.js")
