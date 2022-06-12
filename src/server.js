@@ -19,4 +19,4 @@ app.use("/", globalRouter);
 const handleListening = () =>
   console.log(`Server listening on port http://localhost:${PORT} 🚀`);
 
-app.listen(PORT, handleListening);
+app.listen(process.env.PORT || PORT, handleListening);
