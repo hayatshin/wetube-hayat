@@ -18,8 +18,16 @@ html
                 div#VideoBox
                     video#recordVideo
         div#List
-            if date || title 
-                a#LinkVideo(href="#")
-                    span 👉 Date: #{date} / 
-                    span Title: #{title}
+            if videos.length > 0 
+                each video in videos
+                    div#videoList
+                        div#VideoTitle
+                            a#LinkVideo(href=`${video.id}/show`)
+                                span 👉 Date: #{video.date} / Title: #{video.title}
+                                a#LinkVideoDelete(href=`${video.id}/delete`)
+                                    span ❌
+                        if video.show
+                            div#videoShowBox
+                                video#VideoShow(src=`${video.file}` controls)
+
     script(src="../js/recorder.js")

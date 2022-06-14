@@ -1,26 +1,32 @@
 const VideoBtn = document.querySelector("#VideoBtn");
 const recordVideo = document.querySelector("#recordVideo");
-const VideoList = document.querySelector("#List");
 const RecordForm = document.querySelector("#RecordForm");
 
 let stream;
 let recorder;
 let videoFile;
 
-const handleUpload = () => {
+const handleUpload = async () => {
   VideoBtn.innerText = "Start Video Recording";
   recordVideo.style.visibility = "hidden";
   VideoBtn.removeEventListener("click", handleUpload);
   VideoBtn.addEventListener("click", handleStart);
 
-  localStorage.setItem("video", videoFile);
+  // videoFile url to submit
+  const videoInput = document.createElement("input");
+  videoInput.type = "text";
+  videoInput.name = "file";
+  videoInput.value = videoFile;
+  RecordForm.appendChild(videoInput);
 
   // date and title to upload
   const uploadBtn = document.createElement("input");
   uploadBtn.type = "submit";
   RecordForm.appendChild(uploadBtn);
   uploadBtn.click();
+
   RecordForm.removeChild(uploadBtn);
+  RecordForm.removeChild(videoInput);
 };
 
 const handleStop = () => {

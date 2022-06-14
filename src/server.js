@@ -16,7 +16,4 @@ app.use(express.json());
 app.use(express.static("src"));
 app.use("/", globalRouter);
 
-const handleListening = () =>
-  console.log(`Server listening on port http://localhost:${PORT} 🚀`);
-
-app.listen(process.env.PORT || PORT, handleListening);
+export default app;

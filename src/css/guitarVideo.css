@@ -114,9 +114,38 @@ button {
     background-color: green;
 }
 
+#videoList {
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+}
+
+#VideoTitle {
+    display: flex;
+    flex-direction: row;
+}
+
 #LinkVideo {
+    display: flex;
+    flex-direction: row;
     color: #195973;
     font-size: 18px;
     font-weight: 600;
     text-decoration: none;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#LinkVideoDelete {
+    text-decoration: none;
+}
+
+#videoShowBox {
+    width: 100%;
+}
+
+#VideoShow {
+    margin-left: 30px;
+    width: 300px;
+    height: 200px;
 }
