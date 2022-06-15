@@ -2,6 +2,7 @@ doctype html
 html
     head 
         meta(charset="urf8")
+        link(ref="shortcut icon" href="#")
         title #{pageTitle} | Wetube
         style 
             include ../css/guitarVideo.css
@@ -13,10 +14,12 @@ html
                 input#TitleInput(type="text" name="title")
             div#Btn
                 button#VideoBtn Start Video Recording 
-                button#SoundBtn Start Sound Recording
-            div#RecordBox
+                button#AudioBtn Start Audio Recording
+            div#RecordVideoBox
                 div#VideoBox
                     video#recordVideo
+                div#AudioBox
+                    audio#recordAudio
         div#List
             if videos.length > 0 
                 each video in videos
@@ -28,6 +31,9 @@ html
                                     span ❌
                         if video.show
                             div#videoShowBox
-                                video#VideoShow(src=`${video.file}` controls)
+                                if video.type == "video"
+                                    video#VideoShow(src=`${video.file}` controls)
+                                else if video.type == "audio"
+                                    audio#Audioshow(src=`${video.file}` controls)
 
     script(src="../js/recorder.js")

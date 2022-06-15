@@ -10,11 +10,12 @@ export const getVideo = async (req, res) => {
 };
 
 export const postVideo = async (req, res) => {
-  const { email, password, date, title, file } = req.body;
+  const { email, password, date, title, file, type } = req.body;
   await Video.create({
     title,
     date,
     file,
+    type,
     show: false,
   });
   return res.redirect("/video");
