@@ -5,7 +5,6 @@ const videoSchema = new mongoose.Schema({
   date: String,
   file: String,
   show: Boolean,
-  type: String,
 });
 
 const Video = mongoose.model("Video", videoSchema);

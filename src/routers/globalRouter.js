@@ -6,6 +6,7 @@ import {
   postVideo,
   deleteVideo,
   showVideo,
+  pageVideo,
 } from "../controllers/videoControllder";
 import { uploadFiles } from "../middlewares";
 

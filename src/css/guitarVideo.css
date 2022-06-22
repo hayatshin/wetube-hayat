@@ -3,16 +3,15 @@
 }
 
 body {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 0;
 }
 
 #Record {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,9 +23,13 @@ body {
 #List {
     background-color: #EBEDF2;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     padding: 20px;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 }
 
 #RecordForm {
@@ -35,7 +38,7 @@ body {
     justify-items: center;
     align-items: center;
     margin-bottom: 20px;
-    width: 70%;
+    width: 500px;
     border: 4px solid #195973;
     background-color: #dfedf2;
     border-radius: 15px;
@@ -77,11 +80,12 @@ label {
     background-color: white;
     border-radius: 10px;
     color:  #195973;
+    font-size: 15px;
 }
 
 #InputBox:focus {
     outline: none !important;
-    border-color: orange;
+    border-color: tomato;
 }
 
 #FileInputBox {
@@ -89,7 +93,6 @@ label {
     margin-bottom: 10px;
     color:  #195973;
 }
-
 
 #SubmitBtn {
     width: 150px;
@@ -108,25 +111,22 @@ label {
     flex-direction: row;
 }
 
-button {
+#VideoBtn {
     background-color: #dfedf2;
     color: #195973;
     font-size: 16px;
-    width: 300px;
+    width: 500px;
     height: 40px;
     border-radius: 10px;
     border: none;
-    padding: 0;
     outline: inherit;
     cursor: pointer;
     box-shadow: 5px 5px 1px 1px rgb(25, 89, 115, 0.5);
     font-size: 18px;
     font-weight: 600;
+    margin-bottom: 20px;
 }
 
-#VideoBtn {
-    margin-right: 15px;
-}
 
 #RecordVideoBox {
     display: flex;
@@ -145,23 +145,9 @@ button {
     align-items: center;
 }
 
-#AudioBox {
-    width: 300px;
-    height: 300px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 #recordVideo {
-    width: 400px;
-    height: 400px;
-}
-
-#recordAudio {
     width: 400px;
     height: 400px;
 }
@@ -170,7 +156,7 @@ button {
     display: flex;
     flex-direction:column;
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 8px;
 }
 
 #VideoTitle {
@@ -181,11 +167,11 @@ button {
 #LinkVideo {
     display: flex;
     flex-direction: row;
+    align-items: center;
     color: #195973;
     font-size: 18px;
     font-weight: 600;
     text-decoration: none;
-    margin-bottom: 10px;
     width: 100%;
 }
 
@@ -215,10 +201,41 @@ button {
     margin-bottom: 20px;
 }
 
-#Audioshow{
-    margin-left: 30px;
-    width: 300px;
-    height: 50px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+#FieldText {
+    color: tomato;
+}
+
+#GapPage {
+    background-color: blue;
+    height: 30px;
+}
+
+#Page {
+    position: absolute;
+    bottom: 0;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+#PageLink {
+    text-decoration: none;
+}
+
+#PageBox {
+    background-color: #5FAAD9;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#PageNumber {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
 }

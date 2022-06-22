@@ -21,30 +21,34 @@ html
                 input#SubmitBtn(type="submit" value="🎸 완료!")
             div#Btn
                 button#VideoBtn Start Video Recording 
-                button#AudioBtn Start Audio Recording
             div#RecordVideoBox
                 div#VideoBox
                     video#recordVideo
-                div#AudioBox
-                    audio#recordAudio
         div#List
             if videos.length > 0 
                 each video in videos
-                    div#videoList
-                        div#VideoTitle
-                            a#LinkVideo(href=`${video.id}/show`)
-                                if video.type == "video"
-                                    span 📹 
-                                else if video.type == "audio"
-                                    span 🎙 
-                                span Date: #{video.date} / Title: #{video.title}
+                    a#LinkVideo(href=`${video.id}/show`)
+                        div#videoList
+                            div#VideoTitle
+                                span#LabelText 📹 Date: 
+                                span#FieldText #{video.date}
+                                span#LabelText / 
+                                span#LabelText Title: 
+                                span#FieldText #{video.title}
                                 a#LinkVideoDelete(href=`${video.id}/delete`)
                                     span ❌
-                        if video.show
-                            div#videoShowBox
-                                if video.type == "video"
+                            if video.show
+                                div#videoShowBox
                                     video#VideoShow(src=`${video.file}` controls)
-                                else if video.type == "audio"
-                                    audio#Audioshow(src=`${video.file}` controls)
-
+            div#GapPage
+            div#Page
+                if lastPage > 1
+                    each page of Array(1, lastPage)
+                        a#PageLink(href=`/video?page=${page}`)
+                            div#PageBox
+                                span#PageNumber=page
+                else 
+                    a#PageLink(href=`/video?page=${page}`)
+                        div#PageBox
+                            span#PageNumber=page
     script(src="../js/recorder.js")
