@@ -10,15 +10,17 @@ export const getVideo = async (req, res) => {
 };
 
 export const postVideo = async (req, res) => {
-  const { email, password, date, title, file, type } = req.body;
+  const { date, title, type } = req.body;
+  const { location } = req.file;
   await Video.create({
     title,
     date,
-    file,
-    type,
+    type: "video",
+    file: location,
     show: false,
   });
-  return res.redirect("/video");
+  const videos = await Video.find({});
+  return res.render("guitarVideo", { pageTitle: "Guitar", videos });
 };
 
 export const deleteVideo = async (req, res) => {
@@ -27,19 +29,16 @@ export const deleteVideo = async (req, res) => {
   return res.redirect("/video");
 };
 
-export const showVideo = async (req, res) => {
+export const showVideo = (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
-    await Video.findById(id, function (err, video) {
+    Video.findById(id, function (err, video) {
       video.show = !video.show;
-      video.save(function (err) {
-        if (err) {
-          console.error("ERROR!");
-        }
-      });
+      video.save();
+      console.log(video);
     });
+    res.redirect("/video");
   } catch (e) {
     console.log(e);
   }
-  return res.redirect("/video");
 };

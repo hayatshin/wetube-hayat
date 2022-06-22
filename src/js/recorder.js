@@ -4,46 +4,55 @@ const recordVideo = document.querySelector("#recordVideo");
 const recordAudio = document.querySelector("#recordAudio");
 const AudioBox = document.querySelector("#AudioBox");
 const RecordForm = document.querySelector("#RecordForm");
+const List = document.querySelector("List");
+const VideoTitle = document.querySelector("#VideoTitle");
 
 let stream;
 let recorder;
 let videoFile;
 
-const handleVideoUpload = async () => {
+const handleVideoSubmit = () => {
   VideoBtn.innerText = "Start Video Recording";
-  recordVideo.style.visibility = "hidden";
-  VideoBtn.removeEventListener("click", handleVideoUpload);
+  VideoBtn.removeEventListener("click", handleVideoSubmit);
   VideoBtn.addEventListener("click", handleVideoStart);
-
-  // videoFile url to submit
-  const videoInput = document.createElement("input");
-  videoInput.type = "text";
-  videoInput.name = "file";
-  videoInput.value = videoFile;
-  RecordForm.appendChild(videoInput);
-
-  // type to submit
-  const typeInput = document.createElement("input");
-  typeInput.type = "text";
-  typeInput.name = "type";
-  typeInput.value = "video";
-  RecordForm.appendChild(typeInput);
 
   // date and title to upload
   const uploadBtn = document.createElement("input");
   uploadBtn.type = "submit";
   RecordForm.appendChild(uploadBtn);
   uploadBtn.click();
+};
 
-  RecordForm.removeChild(uploadBtn);
-  RecordForm.removeChild(typeInput);
-  RecordForm.removeChild(videoInput);
+const handleVideoUpload = () => {
+  VideoBtn.innerText = "Submit Video Recording";
+  VideoBtn.removeEventListener("click", handleVideoUpload);
+  VideoBtn.addEventListener("click", handleVideoSubmit);
+
+  // videoFile url to submit
+  const fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.id = "file";
+  fileInput.name = "file";
+  fileInput.accept = "video/mp4,video/mkv, video/x-m4v,video/*";
+  RecordForm.appendChild(fileInput);
+};
+
+const handleVideoDownload = async () => {
+  VideoBtn.innerText = "Upload Video Recording";
+  VideoBtn.removeEventListener("click", handleVideoDownload);
+  VideoBtn.addEventListener("click", handleVideoUpload);
+
+  const a = document.createElement("a");
+  a.href = videoFile;
+  a.download = "MyRecording.webm";
+  RecordForm.appendChild(a);
+  a.click();
 };
 
 const handleVideoStop = () => {
-  VideoBtn.innerText = "Upload Video Recording";
+  VideoBtn.innerText = "Download Video Recording";
   VideoBtn.removeEventListener("click", handleVideoStop);
-  VideoBtn.addEventListener("click", handleVideoUpload);
+  VideoBtn.addEventListener("click", handleVideoDownload);
   recorder.stop();
 };
 
@@ -57,7 +66,7 @@ const handleVideoStart = async () => {
   });
   recordVideo.srcObject = stream;
   recordVideo.play();
-  recorder = new MediaRecorder(stream);
+  recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
   recorder.ondataavailable = (event) => {
     videoFile = URL.createObjectURL(event.data);
     recordVideo.srcObject = null;
@@ -66,6 +75,8 @@ const handleVideoStart = async () => {
   };
   recorder.start();
 };
+
+// AUDIO ****
 
 const handleAudioUpload = () => {
   AudioBtn.innerText = "Start Audio Recording";
@@ -113,7 +124,7 @@ const handleAudioStart = async () => {
   });
   recordAudio.srcObject = stream;
   recordAudio.play();
-  recorder = new MediaRecorder(stream);
+  recorder = new MediaRecorder(stream, { mimeType: "video/ebm" });
   recorder.ondataavailable = (event) => {
     videoFile = URL.createObjectURL(event.data);
     recordAudio.srcObject = null;

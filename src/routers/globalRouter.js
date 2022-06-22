@@ -7,7 +7,7 @@ import {
   deleteVideo,
   showVideo,
 } from "../controllers/videoControllder";
-import { upload } from "../middlewares";
+import { uploadFiles } from "../middlewares";
 
 const globalRouter = express.Router();
 
@@ -15,7 +15,7 @@ globalRouter.route("/").get(home);
 globalRouter
   .route("/video")
   .get(getVideo)
-  .post(upload.single("file"), postVideo);
+  .post(uploadFiles.single("file"), postVideo);
 globalRouter.route("/sign-up").get(getSignUp);
 globalRouter.route("/:id([0-9a-f]{24})/show").get(showVideo);
 globalRouter.route("/:id([0-9a-f]{24})/delete").get(deleteVideo);

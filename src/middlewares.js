@@ -4,13 +4,22 @@ import aws from "aws-sdk";
 require("dotenv").config();
 
 const s3 = new aws.S3({
-  credentials: process.env.AWS_ID,
-  secretAccessKey: process.env.AWS_SECRET,
+  credentials: {
+    accessKeyId: process.env.AWS_ID,
+    secretAccessKey: process.env.AWS_SECRET,
+  },
 });
 
 const multerUploader = multerS3({
   s3: s3,
   bucket: "practiceguitar",
+  acl: "public-read",
 });
 
-export const upload = multer({ dest: "uploads/", storage: multerUploader });
+export const uploadFiles = multer({
+  // dest: "uploads/",
+  limits: {
+    fileSize: 10000000,
+  },
+  storage: multerUploader,
+});

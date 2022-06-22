@@ -1,17 +1,24 @@
 doctype html
 html
     head 
-        meta(charset="urf8")
+        meta(charset="urf8" http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;")
         link(ref="shortcut icon" href="#")
         title #{pageTitle} | Wetube
         style 
             include ../css/guitarVideo.css
     body 
         div#Record
-            form#RecordForm(method="POST")
-                input#DateInput(type="date" name="date")
-                label(for="title") Title:
-                input#TitleInput(type="text" name="title")
+            form#RecordForm(method="POST", enctype="multipart/form-data")
+                div#InputFieldForm
+                    span#InputHeader 날짜
+                    input#InputBox(type="date" name="date")
+                div#InputFieldForm
+                    span#InputHeader 제목
+                    input#InputBox(type="text" name="title")
+                div#InputFieldForm
+                    span#InputHeader 파일
+                    input#FileInputBox(type="file", name="file", accept="video/mp4,video/mkv, video/x-m4v,video/*")
+                input#SubmitBtn(type="submit" value="🎸 완료!")
             div#Btn
                 button#VideoBtn Start Video Recording 
                 button#AudioBtn Start Audio Recording
@@ -26,7 +33,11 @@ html
                     div#videoList
                         div#VideoTitle
                             a#LinkVideo(href=`${video.id}/show`)
-                                span 👉 Date: #{video.date} / Title: #{video.title}
+                                if video.type == "video"
+                                    span 📹 
+                                else if video.type == "audio"
+                                    span 🎙 
+                                span Date: #{video.date} / Title: #{video.title}
                                 a#LinkVideoDelete(href=`${video.id}/delete`)
                                     span ❌
                         if video.show
