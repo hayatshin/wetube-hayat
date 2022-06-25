@@ -4,11 +4,19 @@ block content
     style 
         include ../css/home.css
     div#Container
-        h1 🎼 Let's Practice the Guitar
-        form#UserForm(method="GET" action="/video")
-            input.Blank(placeholder="Type Your Email", name="email", type="email", required) 
-            input.Blank(placeholder="Type Your Password", name="password", type="password", required) 
-            input#Btn(type="submit" value="Log In")
+        h1 🎸  기타 연습장
+        form#UserForm(method="POST" action="/")
+            input.Blank(placeholder="이메일", name="email", type="email", required) 
+            if emailError
+                span#Error=emailError
+            input.Blank(placeholder="비밀번호", name="password", type="password", required) 
+            if passwordError
+                span#Error=passwordError
+            input#Btn(type="submit" value="로그인")
+        div#KakaoLink(href="/video")
+            img#KakaoLogin(src="/assets/kakao_login.png")
         div#SignUpBox
-            span Don't have an Account? 
-            a(href="/sign-up") 👉 Sign Up
+            span 계정이 없으신가요?
+            a(href="/sign-up") 👉 계정 등록
+    script(src="https://developers.kakao.com/sdk/js/kakao.js")
+    script(src="../js/kakaologin.js")

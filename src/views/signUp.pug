@@ -4,8 +4,12 @@ block content
     style 
         include ../css/home.css
     div#Container
-        h1 Enroll Your Account
-        form#UserForm(method="POST" action="/")
-            input.Blank(placeholder="Type Your Email", name="email", type="email", required) 
-            input.Blank(placeholder="Type Your Password", name="password", type="password", required) 
-            input#Btn(type="submit" value="Sign Up")
+        h1 기타 연습 등록하기
+        form#UserForm(method="POST" action="/sign-up")
+            input.Blank(placeholder="이메일", name="email", type="email", required) 
+            if errorMessage
+                span#Error=errorMessage
+            input.Blank(placeholder="비밀번호", name="password", type="password", required) 
+            input#Btn(type="submit" value="등록 완료")
+        div#SignUpBox
+            a(href="/") 👉 로그인 하기

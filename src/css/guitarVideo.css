@@ -239,3 +239,17 @@ label {
     font-size: 16px;
     font-weight: 600;
 }
+
+#ToMain {
+    display: flex;
+    flex-direction: row;
+    color: #dfedf2;
+    width: 100%;
+    margin-bottom: 20px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#ToMain i {
+    margin-right: 10px;
+}

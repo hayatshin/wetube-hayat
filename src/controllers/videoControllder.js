@@ -1,20 +1,21 @@
 import Video from "../models/Video";
 
 const pageSize = 20;
-
-export const home = (req, res) => {
-  return res.render("home", { pageTitle: "Home" });
-};
+let page = null;
+let limit = null;
+let offset = null;
+let lastPage = null;
+let videos = null;
 
 export const getVideo = async (req, res) => {
   try {
-    const page = req.query.page || 1;
-    const limit = page * pageSize;
-    const offset = limit - pageSize + 1;
+    page = req.query.page || 1;
+    limit = page * pageSize;
+    offset = limit - pageSize + 1;
     const totalVideo = await Video.find({});
     const totalVideoCount = totalVideo.length;
-    const videos = await Video.find({}).skip(offset).limit(limit);
-    const lastPage = Math.ceil(totalVideoCount / pageSize);
+    videos = await Video.find({}).skip(offset).limit(limit);
+    lastPage = Math.ceil(totalVideoCount / pageSize);
     return res.render("guitarVideo", {
       pageTitle: "Guitar",
       videos,
@@ -31,7 +32,6 @@ export const getVideo = async (req, res) => {
 export const postVideo = async (req, res) => {
   const { date, title } = req.body;
   const { location } = req.file;
-  console.log(date, title, location);
   await Video.create({
     title,
     date,
@@ -39,30 +39,26 @@ export const postVideo = async (req, res) => {
     show: false,
   });
   const videos = await Video.find({});
-  return res.render("guitarVideo", { pageTitle: "Guitar", videos });
+  return res.render("guitarVideo", { pageTitle: "연습장", videos });
 };
 
 export const deleteVideo = async (req, res) => {
   const { id } = req.params;
+  page = req.query.page;
   await Video.findByIdAndDelete(id);
-  return res.redirect("/video");
+  return res.redirect(`/video?page=${page}`);
 };
 
 export const showVideo = (req, res) => {
   const { id } = req.params;
+  page = req.query.page;
   try {
     Video.findById(id, function (err, video) {
       video.show = !video.show;
       video.save();
-      console.log(video.show);
-      res.redirect("/video");
+      res.redirect(`/video?page=${page}`);
     });
   } catch (e) {
     console.log(e);
   }
-};
-
-export const pageVideo = (req, res) => {
-  console.log(req.query);
-  res.redirect("/video");
 };

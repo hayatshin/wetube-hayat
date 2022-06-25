@@ -3,11 +3,14 @@ html
     head 
         meta(charset="urf8" http-equiv="Content-Security-Policy" content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;")
         link(ref="shortcut icon" href="#")
-        title #{pageTitle} | Wetube
+        title 🎸 기타 연습장
         style 
             include ../css/guitarVideo.css
     body 
         div#Record
+            a#ToMain(href="/")
+                i(class="fas fa-arrow-left")
+                span 로그인 화면으로
             form#RecordForm(method="POST", enctype="multipart/form-data")
                 div#InputFieldForm
                     span#InputHeader 날짜
@@ -27,7 +30,7 @@ html
         div#List
             if videos.length > 0 
                 each video in videos
-                    a#LinkVideo(href=`${video.id}/show`)
+                    a#LinkVideo(href=`${video.id}/show?page=${page}`)
                         div#videoList
                             div#VideoTitle
                                 span#LabelText 📹 Date: 
@@ -35,7 +38,7 @@ html
                                 span#LabelText / 
                                 span#LabelText Title: 
                                 span#FieldText #{video.title}
-                                a#LinkVideoDelete(href=`${video.id}/delete`)
+                                a#LinkVideoDelete(href=`${video.id}/delete?page=${page}`)
                                     span ❌
                             if video.show
                                 div#videoShowBox
@@ -51,4 +54,5 @@ html
                     a#PageLink(href=`/video?page=${page}`)
                         div#PageBox
                             span#PageNumber=page
+    script(src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous")
     script(src="../js/recorder.js")
