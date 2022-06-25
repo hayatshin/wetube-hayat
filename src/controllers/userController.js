@@ -6,19 +6,23 @@ export const getSignUp = (req, res) => {
 };
 
 export const postSignUp = async (req, res) => {
-  const { email, password } = req.body;
-  const emailExists = await User.exists({ $or: [{ email }] });
-  if (emailExists) {
-    return res.status(400).render("signUp", {
-      pageTitle: "등록",
-      errorMessage: "이미 존재하는 이메일 입니다.",
+  try {
+    const { email, password } = req.body;
+    const emailExists = await User.exists({ $or: [{ email }] });
+    if (emailExists) {
+      return res.status(400).render("signUp", {
+        pageTitle: "등록",
+        errorMessage: "이미 존재하는 이메일 입니다.",
+      });
+    }
+    await User.create({
+      email,
+      password,
     });
+    return res.redirect("/sign-up");
+  } catch (e) {
+    console.log(e);
   }
-  await User.create({
-    email,
-    password,
-  });
-  return res.redirect("/sign-up");
 };
 
 export const home = (req, res) => {
