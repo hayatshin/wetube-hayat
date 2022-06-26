@@ -15,7 +15,7 @@ const handleKakaoLogin = () => {
           },
         });
         window.Kakao.Auth.authorize({
-          redirectUri: "http://localhost:4000/video",
+          redirectUri: "https://practiceguitar.herokuapp.com/video",
         });
       },
     });
