@@ -1,7 +1,7 @@
 import Video from "../models/Video";
 
 const pageSize = 20;
-let page = null;
+let page = 1;
 let limit = null;
 let offset = null;
 let lastPage = null;
@@ -39,7 +39,7 @@ export const postVideo = async (req, res) => {
     show: false,
   });
   const videos = await Video.find({});
-  return res.render("guitarVideo", { pageTitle: "연습장", videos });
+  return res.render("guitarVideo", { pageTitle: "연습장", videos, page });
 };
 
 export const deleteVideo = async (req, res) => {
